@@ -32,6 +32,25 @@ const _ = {
         return ' '.repeat(paddingLeft) + string + ' '.repeat(paddingRight);
     },
 
+    // Object Methods
+    has(object, key) {
+        return object[key] ? true : false;
+    },
+    invert(object) {
+        let inverted = {};
+        for (const item in object) {
+            inverted[object[item]] = item;
+        }
+        return inverted;
+    },
+    findKey(object, predicate) {
+
+        for (const item in object) {
+            if (predicate(object[item])) return item;
+        }
+        return undefined;
+    }
+
 };
 
 
