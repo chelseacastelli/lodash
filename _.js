@@ -49,8 +49,30 @@ const _ = {
             if (predicate(object[item])) return item;
         }
         return undefined;
-    }
+    },
 
+    // Array Methods
+    drop(array, n=1) {
+        let temp = array;
+        return temp.slice(n);
+    },
+    dropWhile(array, predicate) {
+        let dropNumber = array.findIndex(function(element, index) {
+            return !predicate(element, index, array);
+        });
+        return this.drop(array, dropNumber);
+    },
+    chunk(array, size=1) {
+        if (size < 1) { return array; }
+        
+        let chunkArray = [];
+        let start = 0;
+        for(let i = 0; i < array.length; i += size) {
+            chunkArray.push(array.slice(start, start += size));
+        }
+
+        return chunkArray;
+    }
 };
 
 
